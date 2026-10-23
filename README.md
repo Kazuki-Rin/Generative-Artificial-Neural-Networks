@@ -1,6 +1,6 @@
 # Generative-Artificial-Neural-Networks
-Hệ thống 10 mô hình AI chạy song song, tự sinh nơ-ron để thích nghi môi trường. Các nhóm cảm biến, tư duy và ký ức liên tục mở rộng cấu trúc độc lập, kết hợp lõi Neural ODE xử lý giọng nói tự nhiên
-Hệ thống này chỉ đang dừng ở mức nghiên cứu của 1 sinh viên và không biết thời hạn hoàn thiện dự án, dự án này mới thực hiện được hơn 1 tuần hơn dưới sự trợ giúp của gemini 3.1 pro và bây giờ là Argon
+Hệ thống 10 mô hình AI chạy song song, tự sinh nơ-ron để thích nghi môi trường. Các nhóm cảm biến, tư duy và ký ức liên tục mở rộng cấu trúc độc lập, kết hợp lõi Neural ODE xử lý giọng nói tự nhiên.
+Hệ thống này chỉ đang dừng ở mức nghiên cứu của 1 sinh viên và không biết thời hạn hoàn thiện dự án, dự án này mới thực hiện được hơn 1 tuần hơn dưới sự trợ giúp của gemini 3.1 pro và bây giờ là Argon.
 Nếu chúng ta "mổ xẻ" bộ não con người và quy đổi các vùng chức năng sinh học thành các mô hình AI độc lập (các mạng nơ-ron chuyên biệt), bạn sẽ cần xây dựng 9 mô hình AI "sơ sinh" để hợp nhất thành một hệ thống AGI hoàn chỉnh.
 Các mô hình này không hoạt động độc lập mà được nối với nhau qua một "trục xương sống" truyền tín hiệu. Dưới đây là bản thiết kế chi tiết 9 mô hình đó:
 Nhóm 1: Các Mô Hình Cảm Giác (Nhận thông tin)
