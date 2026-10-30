@@ -1,0 +1,8 @@
+﻿kazuki_env/
+venv/
+.venv/
+__pycache__/
+*.pyc
+ffmpeg6/
+*.log
+.env

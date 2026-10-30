@@ -1,0 +1,407 @@
+{
+    "version": "5.2",
+    "description": "True Recurrent Neural Architecture Manifest - Fixed Graph Contract (Top-Down, Sandbox, 2-Phase Evolution)",
+    "system_topology": {
+        "infrastructure_modules": ["M0_Cerebrospinal", "Sandbox_Core", "ZMQ_Broker"],
+        "brain_models": [
+            "M1a_Dorsal", "M1b_Ventral", "M2_Ear", "M3_Spatial", "M4_Motor",
+            "M5_Amygdala", "M6_Language", "M7_Logic", "M8_Memory", "M9_Thalamus", "M10_Vocal"
+        ],
+        "control_plane_topics": [
+            "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "CANDIDATE_READY", 
+            "GLOBAL_COMMIT", "GLOBAL_ROLLBACK", "CONTROL_ACK"
+        ],
+        "neuromodulatory_broadcasts": [
+            "CEREBROSPINAL_FLUID", "GLOBAL_PLASTICITY", "GLOBAL_DOPAMINE"
+        ],
+        "data_flow_edges": [
+            { "source": "Sandbox_Core", "target": ["M1a_Dorsal", "M1b_Ventral"], "topic": "ENV_VISION" },
+            { "source": "Sandbox_Core", "target": ["M2_Ear"], "topic": "ENV_AUDIO" },
+            { "source": "Sandbox_Core", "target": ["M3_Spatial"], "topic": "ENV_SPATIAL" },
+            { "source": "Sandbox_Core", "target": ["M5_Amygdala", "M0_Cerebrospinal"], "topic": "ENV_HAZARD" },
+            { "source": "Sandbox_Core", "target": ["M7_Logic"], "topic": "ENV_REWARD" },
+            { "source": "Sandbox_Core", "target": ["M8_Memory"], "topic": "SAVE_MEM" },
+
+            { "source": "M1a_Dorsal", "target": ["M9_Thalamus"], "topic": "RAW_VISION_M1A" },
+            { "source": "M1b_Ventral", "target": ["M9_Thalamus", "M5_Amygdala"], "topic": "RAW_VISION_M1B" },
+            { "source": "M2_Ear", "target": ["M9_Thalamus", "M5_Amygdala"], "topic": "RAW_AUDIO" },
+            { "source": "M3_Spatial", "target": ["M9_Thalamus"], "topic": "RAW_SPATIAL" },
+
+            { "source": "M9_Thalamus", "target": ["M4_Motor"], "topic": "THALAMUS_M4" },
+            { "source": "M9_Thalamus", "target": ["M6_Language"], "topic": "THALAMUS_M6" },
+            { "source": "M9_Thalamus", "target": ["M7_Logic"], "topic": "THALAMUS_M7" },
+            { "source": "M9_Thalamus", "target": ["M8_Memory"], "topic": "THALAMUS_M8" },
+            { "source": "M9_Thalamus", "target": ["M10_Vocal"], "topic": "THALAMUS_M10" },
+            { "source": "M9_Thalamus", "target": ["M1a_Dorsal", "M1b_Ventral", "M2_Ear", "M3_Spatial", "M4_Motor", "M5_Amygdala", "M6_Language", "M7_Logic", "M8_Memory", "M9_Thalamus", "M10_Vocal"], "topic": "THALAMUS_TOPDOWN" },
+
+            { "source": "M5_Amygdala", "target": ["M4_Motor", "M7_Logic", "M9_Thalamus", "M0_Cerebrospinal"], "topic": "AMYGDALA_THREAT" },
+            { "source": "M6_Language", "target": ["M7_Logic", "M9_Thalamus"], "topic": "SEMANTICS" },
+            { "source": "M6_Language", "target": ["M7_Logic", "M10_Vocal"], "topic": "VOCAL_INTENT" },
+            
+            { "source": "M7_Logic", "target": ["M4_Motor"], "topic": "CMD_MOTOR" },
+            { "source": "M7_Logic", "target": ["M6_Language", "M10_Vocal", "Sandbox_Core"], "topic": "CMD_VOCAL" },
+            { "source": "M7_Logic", "target": ["M8_Memory"], "topic": "QUERY_MEM" },
+            { "source": "M7_Logic", "target": ["M0_Cerebrospinal"], "topic": "GLOBAL_DOPAMINE" },
+
+            { "source": "M8_Memory", "target": ["M6_Language", "M7_Logic", "M9_Thalamus", "M0_Cerebrospinal"], "topic": "MEM_RESULT" },
+            { "source": "M8_Memory", "target": ["M4_Motor", "M6_Language", "M7_Logic", "M10_Vocal", "M5_Amygdala", "M9_Thalamus"], "topic": "DREAM_REPLAY" },
+
+            { "source": "M4_Motor", "target": ["Sandbox_Core"], "topic": "MOTOR_EXECUTE" },
+            { "source": "Sandbox_Core", "target": ["M4_Motor", "M3_Spatial", "M7_Logic", "M0_Cerebrospinal", "M9_Thalamus"], "topic": "MOTOR_FEEDBACK" },
+            { "source": "Sandbox_Core", "target": ["M2_Ear", "M9_Thalamus"], "topic": "SELF_AUDIO" },
+            
+            { "source": "M10_Vocal", "target": ["M2_Ear", "Sandbox_Core", "M9_Thalamus"], "topic": "SELF_AUDIO" },
+            { "source": "M10_Vocal", "target": ["M2_Ear", "M6_Language", "M7_Logic", "M0_Cerebrospinal", "Sandbox_Core", "M9_Thalamus"], "topic": "VOCAL_FEEDBACK" },
+
+            { "source": "M0_Cerebrospinal", "target": ["ALL_MODULES"], "topic": "GLOBAL_PLASTICITY" },
+            { "source": "M0_Cerebrospinal", "target": ["ALL_MODULES"], "topic": "CEREBROSPINAL_FLUID" }
+        ],
+        "resource_governor": {
+            "global_max_parameters": 500000,
+            "max_params_per_model": 150000,
+            "max_memory_mb": 4096,
+            "max_process_rss_mb": 2048,
+            "max_nodes_per_module": {
+                "M1a_Dorsal": 500,
+                "M1b_Ventral": 500,
+                "M2_Ear": 1000,
+                "M3_Spatial": 500,
+                "M4_Motor": 500,
+                "M5_Amygdala": 200,
+                "M6_Language": 16,
+                "M7_Logic": 16,
+                "M8_Memory": 2000,
+                "M9_Thalamus": 500,
+                "M10_Vocal": 1000
+            },
+            "max_parameters_per_module": {
+                "M1a_Dorsal": 25000,
+                "M1b_Ventral": 25000,
+                "M2_Ear": 50000,
+                "M3_Spatial": 25000,
+                "M4_Motor": 25000,
+                "M5_Amygdala": 30000,
+                "M6_Language": 120000,
+                "M7_Logic": 80000,
+                "M8_Memory": 50000,
+                "M9_Thalamus": 40000,
+                "M10_Vocal": 30000
+            }
+        }
+    },
+    "modules": {
+        "M0_Cerebrospinal": {
+            "node_type": "neuromodulator",
+            "brain_model": false,
+            "infrastructure": true,
+            "executable": "main_life_loop.py",
+            "input_contract": [
+                "GLOBAL_DOPAMINE", "AMYGDALA_THREAT", "MEM_RESULT", 
+                "MOTOR_FEEDBACK", "VOCAL_FEEDBACK", "ENV_HAZARD",
+                "CEREBROSPINAL_FLUID", "GLOBAL_PLASTICITY"
+            ],
+            "output_contract": [
+                "CEREBROSPINAL_FLUID", "GLOBAL_PLASTICITY"
+            ],
+            "control_inputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "control_outputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "trainer": "none",
+            "runtime": "modulatory_core",
+            "checkpoint_format": "json"
+        },
+        "Sandbox_Core": {
+            "node_type": "environment",
+            "brain_model": false,
+            "infrastructure": true,
+            "executable": "06_Laboratory/sandbox_core.py",
+            "input_contract": [
+                "MOTOR_EXECUTE", "CMD_VOCAL", "VOCAL_FEEDBACK", "SELF_AUDIO",
+                "CEREBROSPINAL_FLUID", "GLOBAL_PLASTICITY"
+            ],
+            "output_contract": [
+                "ENV_VISION", "ENV_AUDIO", "ENV_SPATIAL", "ENV_HAZARD", 
+                "ENV_REWARD", "MOTOR_FEEDBACK", "SELF_AUDIO",
+                "SAVE_MEM"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "SYSTEM_CONTROL"
+            ],
+            "trainer": "none",
+            "runtime": "sandbox_core",
+            "checkpoint_format": "none"
+        },
+        "M1a_Dorsal": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pkl",
+            "input_contract": [
+                "ENV_VISION", "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", 
+                "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "RAW_VISION_M1A"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": false, "max_nodes": 500, "max_parameters": 25000},
+            "trainer": "online_evolution",
+            "runtime": "DynamicNeatBrain"
+        },
+        "M1b_Ventral": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pkl",
+            "input_contract": [
+                "ENV_VISION", "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", 
+                "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "RAW_VISION_M1B"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": false, "max_nodes": 500, "max_parameters": 25000},
+            "trainer": "online_evolution",
+            "runtime": "DynamicNeatBrain"
+        },
+        "M2_Ear": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pt",
+            "input_contract": [
+                "ENV_AUDIO", "SELF_AUDIO", "VOCAL_FEEDBACK", "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", 
+                "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "RAW_AUDIO"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": true, "max_nodes": 1000, "max_parameters": 50000},
+            "trainer": "online_evolution",
+            "runtime": "LiquidAuditoryNet"
+        },
+        "M3_Spatial": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pkl",
+            "input_contract": [
+                "ENV_SPATIAL", "MOTOR_FEEDBACK", "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", 
+                "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "RAW_SPATIAL"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": false, "max_nodes": 500, "max_parameters": 25000},
+            "trainer": "online_evolution",
+            "runtime": "DynamicNeatBrain"
+        },
+        "M4_Motor": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pkl",
+            "input_contract": [
+                "THALAMUS_M4", "CMD_MOTOR", "AMYGDALA_THREAT", "MOTOR_FEEDBACK", "DREAM_REPLAY", 
+                "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "MOTOR_EXECUTE"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": false, "max_nodes": 500, "max_parameters": 25000},
+            "trainer": "online_evolution",
+            "runtime": "DynamicNeatBrain"
+        },
+        "M5_Amygdala": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pt",
+            "input_contract": [
+                "RAW_VISION_M1B", "RAW_AUDIO", "ENV_HAZARD", "DREAM_REPLAY", "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", 
+                "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "AMYGDALA_THREAT"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "SYSTEM_CONTROL", "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": true, "max_nodes": 200, "max_parameters": 30000},
+            "trainer": "online_evolution",
+            "runtime": "LiquidAmygdalaNet"
+        },
+        "M6_Language": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pt",
+            "input_contract": [
+                "THALAMUS_M6", "MEM_RESULT", "VOCAL_FEEDBACK", "CMD_VOCAL", "DREAM_REPLAY", 
+                "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "SEMANTICS", "VOCAL_INTENT"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": true, "max_columns": 16, "max_nodes": 16, "max_parameters": 120000},
+            "trainer": "online_evolution",
+            "runtime": "LiquidProgressiveBrain"
+        },
+        "M7_Logic": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pt",
+            "input_contract": [
+                "THALAMUS_M7", "SEMANTICS", "AMYGDALA_THREAT", "MEM_RESULT", "ENV_REWARD", 
+                "MOTOR_FEEDBACK", "VOCAL_INTENT", "VOCAL_FEEDBACK", "DREAM_REPLAY", "GLOBAL_PLASTICITY", 
+                "CEREBROSPINAL_FLUID", "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "CMD_MOTOR", "CMD_VOCAL", "QUERY_MEM", "GLOBAL_DOPAMINE"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": true, "max_columns": 16, "max_nodes": 16, "max_parameters": 80000},
+            "trainer": "online_evolution",
+            "runtime": "LiquidProgressiveBrain"
+        },
+        "M8_Memory": {
+            "node_type": "neural_memory",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pkl",
+            "input_contract": [
+                "THALAMUS_M8", "QUERY_MEM", "SAVE_MEM", "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", 
+                "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "MEM_RESULT", "DREAM_REPLAY"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": true, "max_nodes": 2000, "max_parameters": 50000, "note": "ART performs structural evolution (merge/prune/split) during sleep cycles, staged via 2-Phase Commit."},
+            "trainer": "online_evolution",
+            "runtime": "ARTMemorySystem"
+        },
+        "M9_Thalamus": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pt",
+            "input_contract": [
+                "RAW_VISION_M1A", "RAW_VISION_M1B", "RAW_AUDIO", "RAW_SPATIAL", 
+                "SEMANTICS", "MEM_RESULT", "AMYGDALA_THREAT", "DREAM_REPLAY", 
+                "MOTOR_FEEDBACK", "VOCAL_FEEDBACK", "SELF_AUDIO",
+                "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "THALAMUS_M4", "THALAMUS_M6", "THALAMUS_M7", "THALAMUS_M8", "THALAMUS_M10",
+                "THALAMUS_TOPDOWN"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": true, "max_nodes": 500, "max_parameters": 40000},
+            "trainer": "online_evolution",
+            "runtime": "DynamicSOM"
+        },
+        "M10_Vocal": {
+            "node_type": "neural",
+            "brain_model": true,
+            "executable": "main_life_loop.py",
+            "checkpoint_format": "pt",
+            "input_contract": [
+                "THALAMUS_M10", "CMD_VOCAL", "VOCAL_INTENT", "DREAM_REPLAY", 
+                "GLOBAL_PLASTICITY", "CEREBROSPINAL_FLUID", "THALAMUS_TOPDOWN"
+            ],
+            "output_contract": [
+                "VOCAL_FEEDBACK", "SELF_AUDIO"
+            ],
+            "control_inputs": [
+                "SYSTEM_CONTROL", "EVOLUTION_PREPARE", "GLOBAL_COMMIT", "GLOBAL_ROLLBACK"
+            ],
+            "control_outputs": [
+                "CANDIDATE_READY", "CONTROL_ACK"
+            ],
+            "evolution": {"enabled": true, "structural": false, "max_nodes": 1000, "max_parameters": 30000},
+            "trainer": "online_evolution",
+            "runtime": "LiquidVocalNet"
+        }
+    },
+    "schemas": {
+        "ENV_REWARD": {
+            "type": "object",
+            "required": ["reward", "rpe", "task_id", "tick_id", "terminated", "truncated"],
+            "description": "Environment explicit reward signal for RL. Must contain precise biological limits."
+        },
+        "GLOBAL_PLASTICITY": {
+            "type": "object",
+            "required": ["rpe", "novelty", "salience", "threat", "arousal", "tick_id", "credit", "generation"],
+            "description": "Cerebrospinal fluid global neuromodulation broadcast."
+        },
+        "CONTROL_ACK": {
+            "type": "object",
+            "required": ["type", "command_id", "transaction_id", "source", "status", "timestamp_ms"],
+            "properties": {
+                "details": {"type": "object"}
+            },
+            "description": "Universal Acknowledgment for 2PC Transactions."
+        }
+    }
+}

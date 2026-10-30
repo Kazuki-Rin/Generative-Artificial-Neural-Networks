@@ -1,0 +1,15 @@
+{
+    "python.analysis.extraPaths": [
+        "./01_Sensory_Inputs/M1_Eye_Vision",
+        "./01_Sensory_Inputs/M2_Ear_Hearing",
+        "./01_Sensory_Inputs/M3_Spatial_Parietal",
+        "./02_Motor_Actuators/M4_Motor_Cortex",
+        "./00_Central_Router/M5_Amygdala",
+        "./03_Cognitive_Core/M6_Wernicke_Broca",
+        "./03_Cognitive_Core/M7_Prefrontal_Cortex",
+        "./04_Memory_System/M8_Hippocampus",
+        "./00_Central_Router/M9_Thalamus",
+        "./05_Vocal_System/M10_Core_Engine"
+    ],
+    "CodeGPT.apiKey": "Nvidia"
+}

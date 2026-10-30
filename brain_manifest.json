@@ -1,0 +1,125 @@
+{
+    "schema_version": 2,
+    "description": "Brain Evolution Manifest - Tracks 2-Phase Evolution Transactions & Rollback Lineage",
+    "brain_generation": 6,
+    "brain_hash": "0c3c4c4b4c77cbb94f76c6b480991a238a37843894c1d7b3322766aaeab1aa50",
+    "parent_brain_hash": "8cf39a1061469382bdc1bfea88922da1d4e38d594742b15aae395972acd871d6",
+    "committed_generation": 6,
+    "committed_brain_hash": "0c3c4c4b4c77cbb94f76c6b480991a238a37843894c1d7b3322766aaeab1aa50",
+    "committed_timestamp": 1792552967.148933,
+    "parent_generation": 0,
+    "lineage_parent_brain_hash": "GENESIS",
+    "fitness": 0.7483782488512778,
+    "current_transaction_id": null,
+    "transaction_status": "COMMITTED",
+    "candidate_hashes": {
+        "M1a_Dorsal": null,
+        "M1b_Ventral": null,
+        "M2_Ear": null,
+        "M3_Spatial": null,
+        "M4_Motor": null,
+        "M5_Amygdala": null,
+        "M6_Language": null,
+        "M7_Logic": null,
+        "M8_Memory": null,
+        "M9_Thalamus": null,
+        "M10_Vocal": null
+    },
+    "model_hashes": {
+        "M10_Vocal": "fa65823ecc2e73082d0f3f4ae4345cc57292819835d50395c269bdf5515755b3",
+        "M1a_Dorsal": "55c48cc40c2957c8acf4db3c8b844c03d6ba0321403cec07717ff1f3b9ecffc8",
+        "M1b_Ventral": "ebc69cca6bf6855963f0da7906ee3b315e5896e54454122ecef87f9677b81f5c",
+        "M2_Ear": "b89469aafd455628647a281bfd711614ead0e51702788b71e863ff436f0ca0fc",
+        "M3_Spatial": "c51465cbc26af240ee0091fc5916e3b17c52112a4b6af03682c9b9d5df70f028",
+        "M4_Motor": "0720e43e7275ff2691995c44bf9c5b50c27731212ee9e5d2a7095e9cf71e3d8b",
+        "M5_Amygdala": "eff128857ef8e0a9f285210c73faab04b7af2514bfc3e9728f74230b1e61365f",
+        "M6_Language": "833cc594072138fcf05fdfc420990239d2a241857cbcdf7885124a2a23bda6a8",
+        "M7_Logic": "29691905dc9567f5c0037034fbdb7279e2c5d44626035cc9594326de9e8afe07",
+        "M8_Memory": "b279e89d854d3d8c74a81be8b9e84fe079ae56e4429aeb1ae6d0f7e1d0fcdb19",
+        "M9_Thalamus": "ff92a8e2baae22732d8f1411fbb8fac19d015580dd077bde2f25a66ae1818786"
+    },
+    "models": {
+        "M10_Vocal": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M10_Vocal/checkpoint.pt",
+            "state_hash": "fa65823ecc2e73082d0f3f4ae4345cc57292819835d50395c269bdf5515755b3"
+        },
+        "M1a_Dorsal": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M1a_Dorsal/checkpoint.pkl",
+            "state_hash": "55c48cc40c2957c8acf4db3c8b844c03d6ba0321403cec07717ff1f3b9ecffc8"
+        },
+        "M1b_Ventral": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M1b_Ventral/checkpoint.pkl",
+            "state_hash": "ebc69cca6bf6855963f0da7906ee3b315e5896e54454122ecef87f9677b81f5c"
+        },
+        "M2_Ear": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M2_Ear/checkpoint.pt",
+            "state_hash": "b89469aafd455628647a281bfd711614ead0e51702788b71e863ff436f0ca0fc"
+        },
+        "M3_Spatial": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M3_Spatial/checkpoint.pkl",
+            "state_hash": "c51465cbc26af240ee0091fc5916e3b17c52112a4b6af03682c9b9d5df70f028"
+        },
+        "M4_Motor": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M4_Motor/checkpoint.pkl",
+            "state_hash": "0720e43e7275ff2691995c44bf9c5b50c27731212ee9e5d2a7095e9cf71e3d8b"
+        },
+        "M5_Amygdala": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M5_Amygdala/checkpoint.pt",
+            "state_hash": "eff128857ef8e0a9f285210c73faab04b7af2514bfc3e9728f74230b1e61365f"
+        },
+        "M6_Language": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M6_Language/checkpoint.pt",
+            "state_hash": "833cc594072138fcf05fdfc420990239d2a241857cbcdf7885124a2a23bda6a8"
+        },
+        "M7_Logic": {
+            "generation": 6,
+            "topology_version": 2,
+            "checkpoint_path": "models/M7_Logic/checkpoint.pt",
+            "state_hash": "29691905dc9567f5c0037034fbdb7279e2c5d44626035cc9594326de9e8afe07"
+        },
+        "M8_Memory": {
+            "generation": 6,
+            "topology_version": 3,
+            "checkpoint_path": "models/M8_Memory/checkpoint.pkl",
+            "state_hash": "b279e89d854d3d8c74a81be8b9e84fe079ae56e4429aeb1ae6d0f7e1d0fcdb19"
+        },
+        "M9_Thalamus": {
+            "generation": 6,
+            "topology_version": 1,
+            "checkpoint_path": "models/M9_Thalamus/checkpoint.pt",
+            "state_hash": "ff92a8e2baae22732d8f1411fbb8fac19d015580dd077bde2f25a66ae1818786"
+        }
+    },
+    "rollback_lineage": {
+        "enabled": true,
+        "max_depth": 5,
+        "history": [
+            "457f60b92ca78d75c2440037eedcd85e9f0095f94dfe99013b4c06e9584810e7",
+            "2a08a09b726cf469e173a235fb447000d5cec9008d5bb18cbeaa08dbf329a7e5",
+            "ec22f332a35daf3f8e4216a1f39acb87014869ab2b5fda4f4ede4c5df6ff13b1",
+            "25ecb47220a1248b640fc95f0c1e41afcd4a31540f1b7be21244b3aceead4f57",
+            "8cf39a1061469382bdc1bfea88922da1d4e38d594742b15aae395972acd871d6"
+        ]
+    },
+    "metadata": {
+        "created_at": 1792253273.726089,
+        "last_updated": 1792552967.148933,
+        "schema_version": 2
+    }
+}

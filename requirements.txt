@@ -1,0 +1,26 @@
+# --- Core Deep Learning ---
+torch==2.3.0
+torchvision==0.18.0
+torchaudio==2.3.0
+
+# --- SNN & Evolutionary Algorithms ---
+snntorch==0.8.1
+neat-python==0.92
+torchdiffeq==0.2.3
+
+# --- Vector Database & Memory ---
+chromadb==0.5.5
+
+# --- Math & Utilities ---
+numpy==1.26.4
+pyzmq==25.1.2
+psutil==5.9.8
+loguru==0.7.2
+
+# --- Media Processing ---
+opencv-python==4.10.0.84
+sounddevice==0.4.7
+pillow==10.4.0
+
+# --- Visualization & Lab Environments ---
+matplotlib>=3.7.0
